@@ -25,7 +25,7 @@ function IP address ()
    echo "The IP address of my machine is $(ifconfig | grep "inet addr" | head -n1 | cut -d: -f2 | cut -d" " -f1)"
    return 0
 }
-function Operating System Version ()
+function operating system version ()
 {
     echo ""
     echo "This is my OS version $(cat /etc/os-release | grep "VERSION_ID"| cut -d\" -f2)"
@@ -139,7 +139,7 @@ do
         -myip)          IP address
         ;;
         
-        -myosv)         Operating system Version
+        -myosv)         operating system version
         ;;
         
         -myosn)         OS name
@@ -157,7 +157,7 @@ do
         -mysoft)        softwares installed
         ;;
     
-        -error)         erorr
+        -error)         error
         ;;
         
         -help|--h)      help
