@@ -19,25 +19,25 @@ function mydomain ()
     return 0
     
 }
-function IP address ()
+function ipaddress ()
 {
    echo "" 
    echo "The IP address of my machine is $(ifconfig | grep "inet addr" | head -n1 | cut -d: -f2 | cut -d" " -f1)"
    return 0
 }
-function operating system version ()
+function osversion ()
 {
     echo ""
     echo "This is my OS version $(cat /etc/os-release | grep "VERSION_ID"| cut -d\" -f2)"
     return 0
 }
-function OS name ()
+function osname ()
 {
     echo ""
     echo "My Operating System name is $(cat /etc/os-release | grep "NAME" | head -n1 | cut -d\" -f2)"
     return 0
 }
-function CPU ()
+function cpuinfo ()
 {
     echo ""
     echo "This is the model name of my CPU $(cat /proc/cpuinfo | grep "model name" | head -n1 | cut -d: -f2 | cut -d " " -f2-6)"
@@ -51,7 +51,7 @@ function memory ()
     echo "This machine has $(free -h |grep "Mem" | awk '{print $2}') of memory installed"
     return 0
 }
-function diskspace available ()
+function diskspaceavailable ()
 {
     echo ""
     disk=($(df -Th | grep "^/" | awk '{print $5}'))
@@ -75,7 +75,7 @@ function printers ()
         fi
         return 0
 }
-function softwares installed ()
+function softwaresinstalled ()
 {
     #check if the script is running in a Linux based debian distribution.
     if [ $(cat /etc/os-release | grep ID_LIKE | cut -d= -f2) != "debian" ]
@@ -108,7 +108,7 @@ function help ()
     echo    "systeminfo.sh [options]"
     echo ""
     echo "Options:"
-    echo "-mysys        show system name"
+    echo "-mysys        show the system name"
     echo "-mydn         show the domain name"
     echo "-myip         show the ip address of device"
     echo "-myosv        show the operating system version"
@@ -117,7 +117,7 @@ function help ()
     echo "-myds         show the total available disk space"
     echo "-mylp         show the list of printers"
     echo "-mysoft       show the softwares with version"
-    echo "-help, --h    show this help"
+    echo "-help, --h    show the help"
     echo "Thanks for using help"
     echo ""
     exit 0
@@ -136,25 +136,25 @@ do
         -mydn)          mydomain
         ;;
         
-        -myip)          IP address
+        -myip)          ipaddress
         ;;
         
-        -myosv)         operating system version
+        -myosv)         osversion
         ;;
         
-        -myosn)         OS name
+        -myosn)         osname
         ;;
         
-        -mycpu)         CPU
+        -mycpu)         cpuinfo
         ;;
         
-        -myds)          diskspace available
+        -myds)          diskspaceavailable
         ;;
         
         -mylp)          printers
         ;;
         
-        -mysoft)        softwares installed
+        -mysoft)        softwaresinstalled
         ;;
     
         -error)         error
