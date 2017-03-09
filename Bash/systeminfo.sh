@@ -136,7 +136,7 @@ function error ()
             -cpu)         cpuinfo
             ;;
             
-            -mymem)       memory
+            -mem)       memory
             ;;
             
             -ds)          diskspaceavailable
@@ -172,16 +172,16 @@ function help ()
     echo    "systeminfo.sh [options]"
     echo ""
     echo "Options:"
-    echo "-sys        show the system name"
-    echo "-dn         show the domain name"
-    echo "-ip         show the ip address of device"
-    echo "-osv        show the operating system version"
-    echo "-osn        show the operating system name"
-    echo "-cpu        show the cpu model, number of cores and modes cpu"
-    echo "-ds         show the total available disk space"
-    echo "-lp         show the list of printers"
-    echo "-soft       show the softwares with version"
-    echo "-help, --h  show the help"
+    echo "-sys        It displays the name of the system"
+    echo "-dn         It displays the name of the domain"
+    echo "-ip         It displays the ip address of machine"
+    echo "-osv        It displays the operating system version"
+    echo "-osn        It displays the operating system name"
+    echo "-cpu        It displays the cpu model, number of cores and modes of cpu"
+    echo "-ds         It displays the total disk space avialable on the machine"
+    echo "-lp         It displays the list of printers"
+    echo "-soft       It displays the softwares installed on this machine with version"
+    echo "-help, --h  It displays the help"
     echo ""
     echo ""
     exit 0
