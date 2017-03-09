@@ -12,9 +12,9 @@ function mydomain ()
     echo ""
     if [ -z $(hostname -d) ];
     then
-        echo "This machine has no Domain"
+    echo "This machine has no Domain"
     else
-        echo "The Domain name for this machine is $(hostname -d)"
+    echo "The Domain name for this machine is $(hostname -d)"
     fi
     return 0
     
@@ -83,16 +83,16 @@ function diskspaceavailable ()
 }
 function printers ()
 {
-        echo ""
-        if [ -n $(lpstat -a)];
-        then
-            echo "List of the Available Printers"
-            echo "------------------------------"
-            lpstat -a | awk '{print $1}'
-        else
-            echo "This machine has no Printers"
-        fi
-        return 0
+    echo ""
+    if [ -n $(lpstat -a)];
+    then
+        echo "List of the Available Printers"
+        echo "------------------------------"
+        lpstat -a | awk '{print $1}'
+    else
+        echo "This machine has no Printers"
+    fi
+    return 0
 }
 function softwaresinstalled ()
 {
