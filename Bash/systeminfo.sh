@@ -84,13 +84,27 @@ function diskspaceavailable ()
 function printers ()
 {
     echo ""
-    if [ -n $(lpstat -a)];
+    #Check if cups are installed
+    if [ -z $(dpkg-query -l | grep ii | awk '{print  $2}' | grep "^cups" | sort -n |head -1) ]
     then
-        echo "List of the Available Printers"
-        echo "------------------------------"
-        lpstat -a | awk '{print $1}'
+        echo "cups are not installed" >&2
     else
-        echo "This machine has no Printers"
+        service cups status > /dev/null 2>&1
+        if [ $? -eq 3 ]
+        then
+            echo "cups are not running" >&2
+            echo "Please start cups to run this command" >&2
+        else
+            lpstat -a > /dev/null 2>&1
+            if [ $? -eq 0 ]
+            then
+                echo "List of the Available Printers"
+                echo "------------------------------"
+                lpstat -a | awk '{print $1}'
+            else
+                echo "This machine has no Printers"
+            fi
+        fi
     fi
     return 0
 }
@@ -136,7 +150,7 @@ function error ()
             -cpu)         cpuinfo
             ;;
             
-            -mem)       memory
+            -mem)         memory
             ;;
             
             -ds)          diskspaceavailable
@@ -182,9 +196,23 @@ function help ()
     echo "-lp         It displays the list of printers"
     echo "-soft       It displays the softwares installed on this machine with version"
     echo "-help, --h  It displays the help"
-    echo ""
+    echo "Do You need additional help?"
     echo ""
     exit 0
 }
 arg=($(echo "$@"))
-error
+if [[ -n ${arg[0]} ]]
+then
+    error
+else
+    mysystem
+    mydomain
+    ipaddress
+    osversion
+    osname
+    cpuinfo
+    memory
+    diskspaceavailable
+    printers
+    softwaresinstalled
+fi
